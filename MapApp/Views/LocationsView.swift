@@ -13,6 +13,8 @@ struct LocationsView: View {
                 Spacer()
                 footer
             }
+        }.sheet(item: $vm.sheetLocation) { loc in
+            LocationDetailsView(location: loc)
         }
     }
 }
@@ -28,7 +30,10 @@ extension LocationsView {
                     .shadow(radius: 10)
                     .onTapGesture { vm.changeLocation(loc) }
             }
-        }).ignoresSafeArea()
+        })
+        .ignoresSafeArea()
+        .onTapGesture {}
+        .onLongPressGesture(perform: {})
     }
     private var header: some View {
         VStack {
@@ -36,14 +41,14 @@ extension LocationsView {
                 Text(vm.mapLocation.name + ", " + vm.mapLocation.cityName)
                     .font(.title2)
                     .fontWeight(.black)
-                    .foregroundStyle(.black)
+                    .foregroundColor(.primary)
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
                     .animation(.none, value: vm.mapLocation)
                     .overlay(alignment: .leading) {
                         Image(systemName: "arrow.down")
                             .font(.headline)
-                            .foregroundStyle(.black)
+                            .foregroundColor(.primary)
                             .padding()
                             .rotationEffect(Angle(degrees:
                                 vm.showLocationsList ? 180 : 0))

@@ -18,10 +18,15 @@ class LocationsViewModel: ObservableObject {
     /// Show list of locations
     @Published var showLocationsList = false
 
-    /// Constant
+    /// Show LocationDetailsSheet
+    @Published var sheetLocation: Location? = nil
+
     let standartSpan = MKCoordinateSpan(
         latitudeDelta: 0.1,
         longitudeDelta: 0.1)
+    let zoomedSpan = MKCoordinateSpan(
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01)
 
     init() {
         let locations = LocationsDataService.locations

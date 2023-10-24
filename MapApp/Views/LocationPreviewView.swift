@@ -2,8 +2,7 @@ import SwiftUI
 
 struct LocationPreviewView: View {
 
-    @EnvironmentObject
-    var vm: LocationsViewModel
+    @EnvironmentObject var vm: LocationsViewModel
     let location: Location
 
     var body: some View {
@@ -52,7 +51,7 @@ extension LocationPreviewView {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
     private var buttonLearnMore: some View {
-        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+        Button(action: { vm.sheetLocation = location }) {
             Text("Learn more")
                 .font(.headline)
                 .frame(width: 124, height: 30)
